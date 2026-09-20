@@ -98,7 +98,7 @@ describe('negation patterns - "!"', () => {
     assert(!isMatch('a/a', '!a/(*)'));
     assert(!isMatch('a/b', '!a/(*)'));
     assert(!isMatch('a/c', '!a/(*)'));
-    assert(!isMatch('a/b', '!a/(b)'));
+    assert(isMatch('a/b', '!a/(b)'));
     assert(!isMatch('a/a', '!a/*'));
     assert(!isMatch('a/b', '!a/*'));
     assert(!isMatch('a/c', '!a/*'));

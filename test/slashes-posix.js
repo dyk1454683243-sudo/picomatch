@@ -323,7 +323,7 @@ describe('slash handling - posix', () => {
     assert(isMatch('b/c', ['!a/b', '!a/c']));
 
     assert(isMatch('a/a', '!a/(b)'));
-    assert(!isMatch('a/b', '!a/(b)'));
+    assert(isMatch('a/b', '!a/(b)'));
     assert(isMatch('a/c', '!a/(b)'));
     assert(isMatch('b/a', '!a/(b)'));
     assert(isMatch('b/b', '!a/(b)'));

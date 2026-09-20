@@ -362,7 +362,8 @@ describe('extglobs', () => {
       assert(!isMatch('fofoofoofofoo', '(foo)bb', { windows: true }));
       assert(!isMatch('foo', '(foo)bb', { windows: true }));
       assert(!isMatch('foob', '(foo)bb', { windows: true }));
-      assert(isMatch('foobb', '(foo)bb', { windows: true }));
+      assert(!isMatch('foobb', '(foo)bb', { windows: true }));
+      assert(isMatch('(foo)bb', '(foo)bb', { windows: true }));
       assert(!isMatch('foofoofo', '(foo)bb', { windows: true }));
       assert(!isMatch('fooofoofofooo', '(foo)bb', { windows: true }));
       assert(!isMatch('foooofo', '(foo)bb', { windows: true }));

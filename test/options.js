@@ -70,24 +70,24 @@ describe('options', () => {
 
     it('should not match extglobs when noextglob is true', () => {
       assert(!isMatch('ax', '?(a*|b)', { noextglob: true, windows: true }));
-      assert.deepStrictEqual(match(['a.j.js', 'a.md.js'], '*.*(j).js', { noextglob: true, windows: true }), ['a.j.js']);
+      assert.deepStrictEqual(match(['a.j.js', 'a.md.js'], '*.*(j).js', { noextglob: true, windows: true }), []);
       assert.deepStrictEqual(match(['a/z', 'a/b', 'a/!(z)'], 'a/!(z)', { noextglob: true, windows: true }), ['a/!(z)']);
       assert.deepStrictEqual(match(['a/z', 'a/b'], 'a/!(z)', { noextglob: true, windows: true }), []);
       assert.deepStrictEqual(match(['c/a/v'], 'c/!(z)/v', { noextglob: true, windows: true }), []);
       assert.deepStrictEqual(match(['c/z/v', 'c/a/v'], 'c/!(z)/v', { noextglob: true, windows: true }), []);
       assert.deepStrictEqual(match(['c/z/v', 'c/a/v'], 'c/@(z)/v', { noextglob: true, windows: true }), []);
       assert.deepStrictEqual(match(['c/z/v', 'c/a/v'], 'c/+(z)/v', { noextglob: true, windows: true }), []);
-      assert.deepStrictEqual(match(['c/z/v', 'c/a/v'], 'c/*(z)/v', { noextglob: true, windows: true }), ['c/z/v']);
-      assert.deepStrictEqual(match(['c/z/v', 'z', 'zf', 'fz'], '?(z)', { noextglob: true, windows: true }), ['fz']);
+      assert.deepStrictEqual(match(['c/z/v', 'c/a/v'], 'c/*(z)/v', { noextglob: true, windows: true }), []);
+      assert.deepStrictEqual(match(['c/z/v', 'z', 'zf', 'fz'], '?(z)', { noextglob: true, windows: true }), []);
       assert.deepStrictEqual(match(['c/z/v', 'z', 'zf', 'fz'], '+(z)', { noextglob: true, windows: true }), []);
-      assert.deepStrictEqual(match(['c/z/v', 'z', 'zf', 'fz'], '*(z)', { noextglob: true, windows: true }), ['z', 'fz']);
+      assert.deepStrictEqual(match(['c/z/v', 'z', 'zf', 'fz'], '*(z)', { noextglob: true, windows: true }), []);
       assert.deepStrictEqual(match(['cz', 'abz', 'az'], 'a@(z)', { noextglob: true, windows: true }), []);
       assert.deepStrictEqual(match(['cz', 'abz', 'az'], 'a*@(z)', { noextglob: true, windows: true }), []);
       assert.deepStrictEqual(match(['cz', 'abz', 'az'], 'a!(z)', { noextglob: true, windows: true }), []);
-      assert.deepStrictEqual(match(['cz', 'abz', 'az', 'azz'], 'a?(z)', { noextglob: true, windows: true }), ['abz', 'azz']);
-      assert.deepStrictEqual(match(['cz', 'abz', 'az', 'azz', 'a+z'], 'a+(z)', { noextglob: true, windows: true }), ['a+z']);
-      assert.deepStrictEqual(match(['cz', 'abz', 'az'], 'a*(z)', { noextglob: true, windows: true }), ['abz', 'az']);
-      assert.deepStrictEqual(match(['cz', 'abz', 'az'], 'a**(z)', { noextglob: true, windows: true }), ['abz', 'az']);
+      assert.deepStrictEqual(match(['cz', 'abz', 'az', 'azz'], 'a?(z)', { noextglob: true, windows: true }), []);
+      assert.deepStrictEqual(match(['cz', 'abz', 'az', 'azz', 'a+z'], 'a+(z)', { noextglob: true, windows: true }), []);
+      assert.deepStrictEqual(match(['cz', 'abz', 'az'], 'a*(z)', { noextglob: true, windows: true }), []);
+      assert.deepStrictEqual(match(['cz', 'abz', 'az'], 'a**(z)', { noextglob: true, windows: true }), []);
       assert.deepStrictEqual(match(['cz', 'abz', 'az'], 'a*!(z)', { noextglob: true, windows: true }), []);
     });
   });

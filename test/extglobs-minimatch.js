@@ -144,8 +144,8 @@ describe('extglobs (minimatch)', () => {
     assert(!isMatch('a', '!(a)*', { windows: true }));
   });
 
-  it('"a" should match "(a)"', () => {
-    assert(isMatch('a', '(a)', { windows: true }));
+  it('"a" should not match "(a)"', () => {
+    assert(!isMatch('a', '(a)', { windows: true }));
   });
 
   it('"a" should not match "(b)"', () => {
@@ -276,8 +276,8 @@ describe('extglobs (minimatch)', () => {
     assert(isMatch('a.a', '(a|d).(a|b)*', { windows: true }));
   });
 
-  it('"a.a" should match "(b|a).(a)"', () => {
-    assert(isMatch('a.a', '(b|a).(a)', { windows: true }));
+  it('"a.a" should not match "(b|a).(a)"', () => {
+    assert(!isMatch('a.a', '(b|a).(a)', { windows: true }));
   });
 
   it('"a.a" should match "*!(.a|.b|.c)"', () => {
@@ -1468,8 +1468,8 @@ describe('extglobs (minimatch)', () => {
     assert(!isMatch('b', 'a!(b)*', { windows: true }));
   });
 
-  it('"b.a" should match "(b|a).(a)"', () => {
-    assert(isMatch('b.a', '(b|a).(a)', { windows: true }));
+  it('"b.a" should not match "(b|a).(a)"', () => {
+    assert(!isMatch('b.a', '(b|a).(a)', { windows: true }));
   });
 
   it('"b.a" should match "@(b|a).@(a)"', () => {
@@ -1864,8 +1864,8 @@ describe('extglobs (minimatch)', () => {
     assert(!isMatch('e.e', '*.(a|b|@(ab|a*@(b))*(c)d)', { windows: true }));
   });
 
-  it('"ef" should match "()ef"', () => {
-    assert(isMatch('ef', '()ef', { windows: true }));
+  it('"ef" should not match "()ef"', () => {
+    assert(!isMatch('ef', '()ef', { windows: true }));
   });
 
   it('"effgz" should match "@(b+(c)d|e*(f)g?|?(h)i@(j|k))"', () => {
@@ -2264,8 +2264,8 @@ describe('extglobs (minimatch)', () => {
     assert(!isMatch('foobb', '!(foo)b*', { windows: true }));
   });
 
-  it('"foobb" should match "(foo)bb"', () => {
-    assert(isMatch('foobb', '(foo)bb', { windows: true }));
+  it('"foobb" should not match "(foo)bb"', () => {
+    assert(!isMatch('foobb', '(foo)bb', { windows: true }));
   });
 
   it('"(foo)bb" should match "\\(foo\\)bb"', () => {

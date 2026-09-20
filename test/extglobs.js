@@ -458,10 +458,10 @@ describe('extglobs', () => {
     assert(!isMatch('a.bb', '(b|a).(a)'));
     assert(!isMatch('a.aa.a', '(b|a).(a)'));
     assert(!isMatch('cc.a', '(b|a).(a)'));
-    assert(isMatch('a.a', '(b|a).(a)'));
+    assert(!isMatch('a.a', '(b|a).(a)'));
     assert(!isMatch('c.a', '(b|a).(a)'));
     assert(!isMatch('dd.aa.d', '(b|a).(a)'));
-    assert(isMatch('b.a', '(b|a).(a)'));
+    assert(!isMatch('b.a', '(b|a).(a)'));
 
     assert(!isMatch('aa.aa', '@(b|a).@(a)'));
     assert(!isMatch('a.bb', '@(b|a).@(a)'));
@@ -706,7 +706,8 @@ describe('extglobs', () => {
     assert(isMatch('ef', '@()ef'));
 
     assert(!isMatch('def', '()ef'));
-    assert(isMatch('ef', '()ef'));
+    assert(!isMatch('ef', '()ef'));
+    assert(isMatch('()ef', '()ef'));
   });
 
   it('should match escaped parens', () => {

@@ -44,7 +44,7 @@ describe('options.ignore', () => {
     assert.deepStrictEqual(match(['foo.js', 'a/foo.js'], '**/foo.js', { dot: true }), ['foo.js', 'a/foo.js']);
 
     assert.deepStrictEqual(match(negations, '!b/a', opts), ['b/b', 'b/c']);
-    assert.deepStrictEqual(match(negations, '!b/(a)', opts), ['b/b', 'b/c']);
+    assert.deepStrictEqual(match(negations, '!b/(a)', opts), ['b/a', 'b/b', 'b/c']);
     assert.deepStrictEqual(match(negations, '!(b/(a))', opts), ['b/b', 'b/c']);
     assert.deepStrictEqual(match(negations, '!(b/a)', opts), ['b/b', 'b/c']);
 

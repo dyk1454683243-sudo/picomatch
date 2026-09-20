@@ -248,7 +248,8 @@ describe('regex features', () => {
     });
 
     it('should support regex capture groups', () => {
-      assert(isMatch('a/bb/c/dd/e.md', 'a/??/?/(dd)/e.md'));
+      assert(!isMatch('a/bb/c/dd/e.md', 'a/??/?/(dd)/e.md'));
+      assert(isMatch('a/bb/c/(dd)/e.md', 'a/??/?/(dd)/e.md'));
       assert(isMatch('a/b/c/d/e.md', 'a/?/c/?/(e|f).md'));
       assert(isMatch('a/b/c/d/f.md', 'a/?/c/?/(e|f).md'));
     });

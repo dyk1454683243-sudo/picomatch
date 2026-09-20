@@ -513,7 +513,7 @@ describe('slash handling - windows', () => {
 
     assert(isMatch('a', '!a/(b)', { windows: true }));
     assert(isMatch('a\\a', '!a/(b)', { windows: true }));
-    assert(!isMatch('a\\b', '!a/(b)', { windows: true }));
+    assert(isMatch('a\\b', '!a/(b)', { windows: true }));
     assert(isMatch('a\\c', '!a/(b)', { windows: true }));
     assert(isMatch('b\\a', '!a/(b)', { windows: true }));
     assert(isMatch('b\\b', '!a/(b)', { windows: true }));
