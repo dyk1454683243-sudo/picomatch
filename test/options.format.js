@@ -2,7 +2,8 @@
 
 const assert = require('assert');
 const match = require('./support/match');
-const { isMatch } = require('..');
+const picomatch = require('..');
+const { isMatch } = picomatch;
 
 const equal = (actual, expected, msg) => {
   assert.deepStrictEqual([].concat(actual).sort(), [].concat(expected).sort(), msg);
@@ -56,5 +57,21 @@ describe('options.format', () => {
     equal(match(fixtures, 'a/*/*/*', opts), ['a/a/a/a']);
     equal(match(fixtures, 'a/*/*/*/*', opts), ['a/a/a/a/a']);
     equal(match(fixtures, 'a/*/a', opts), ['a/a/a']);
+  });
+
+  // see https://github.com/micromatch/picomatch/issues/151
+  it('should apply options.format before requiring a string input', () => {
+    const format = file => file && file.path;
+    const isObjectMatch = picomatch('*.js', { format });
+
+    assert(isObjectMatch({ path: 'foo.js' }));
+    assert(!isObjectMatch({ path: 'foo.txt' }));
+
+    const result = picomatch.test({ path: 'a/b.md' }, picomatch.makeRe('a/*.md'), { format });
+    assert(result.isMatch);
+    assert.strictEqual(result.output, 'a/b.md');
+
+    assert.throws(() => picomatch.test({ path: 'foo.js' }, /./), /Expected input to be a string/);
+    assert.throws(() => picomatch.test({ path: 'foo.js' }, /./, { format: () => 1 }), /Expected input to be a string/);
   });
 });

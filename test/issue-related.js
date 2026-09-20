@@ -1,7 +1,8 @@
 'use strict';
 
 const assert = require('assert');
-const { isMatch } = require('..');
+const picomatch = require('..');
+const { isMatch } = picomatch;
 
 describe('issue-related tests', () => {
   it('should match with braces (see picomatch/issues#8)', () => {
@@ -83,5 +84,11 @@ describe('issue-related tests', () => {
     assert(!isMatch('somepath/test.dash-thing.js', '**.dash-thing.js'));
     assert(isMatch('test.thing.js', '**.thing.js'));
     assert(isMatch('somepath/test.thing.js', '**/*.thing.js'));
+  });
+
+  it('should match object inputs when format returns a path string (picomatch/issues#151)', () => {
+    const format = file => file.path;
+    assert(isMatch({ path: 'foo/bar.js' }, 'foo/*.js', { format }));
+    assert(!isMatch({ path: 'foo/bar.txt' }, 'foo/*.js', { format }));
   });
 });
